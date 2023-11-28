@@ -16,6 +16,8 @@ jobs:
       run: uname -a
     - name: sysctl -a | grep cpu
       run: sysctl -a | grep cpu
+    - name: Get Hardware Overview
+      run: system_profiler SPHardwareDataType
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
     - name: bundle install
