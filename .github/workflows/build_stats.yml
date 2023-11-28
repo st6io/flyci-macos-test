@@ -5,13 +5,17 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-13
+    runs-on: macos-13
     strategy:
       matrix:
         xcode:
           - "15.0"
     steps:
     - uses: actions/checkout@v1
+    - name: uname -a
+      run: uname -a
+    - name: sysctl -a | grep cpu
+      run: sysctl -a | grep cpu
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
     - name: bundle install
