@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest-xlarge
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -15,7 +15,7 @@ jobs:
         run: echo "Build step runs here"
 
   deploy:
-    runs-on: macos-latest-xlarge
+    runs-on: unknown
     needs: build
     environment:
       name: staging
