@@ -1,0 +1,36 @@
+name: Build and Deploy with Approval
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Build
+        run: echo "Build step runs here"
+
+  deploy:
+    runs-on: macos-13
+    needs: build
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        run: echo "Deployment step runs here"
+        id: deploy
+
+      # Optional: Set deployment URL
+      - name: Set Deployment URL
+        run: echo "::set-output name=deployment-url::http://example.com"
+        id: set-deployment-url
