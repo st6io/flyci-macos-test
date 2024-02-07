@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: flyci-macos-14-m2
+    runs-on: flyci-macos-14-xlarge-m2
     strategy:
       matrix:
         xcode:
