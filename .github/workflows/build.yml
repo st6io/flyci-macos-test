@@ -13,5 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: echo $RUNNER_VERSION
-  
+      run: |
+          echo "Runner Temp Directory: $RUNNER_TEMP"
+          echo "Runner Tool Cache Directory: $RUNNER_TOOL_CACHE"
+          echo "Runner Workspace Directory: $RUNNER_WORKSPACE"
