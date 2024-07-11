@@ -5,14 +5,10 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-13
-    strategy:
-      matrix:
-        xcode:
-          - "15.0"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Select Xcode
+    - name: Print Runner Dirs
       run: |
           echo "Runner Temp Directory: $RUNNER_TEMP"
           echo "Runner Tool Cache Directory: $RUNNER_TOOL_CACHE"
