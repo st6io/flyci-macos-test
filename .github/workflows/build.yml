@@ -2,6 +2,10 @@ name: CI
 
 on: 
   workflow_dispatch:
+  
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   build:
@@ -11,15 +15,7 @@ jobs:
         xcode:
           - "15.0"
     steps:
-    - uses: actions/checkout@v1
-    - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
-    - name: bundle install
-      run: bundle update --bundler && bundle install
-    - name: Install CocoaPods dependencies
-      run: bundle exec pod install
-    - run: git config --global core.quotepath false # for Ikemen on SwiftPM
-    - name: Build (iOS)
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
-    - name: Build (macOS)
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+    - name: lcpu
+      run: lcpu
+    - uses: fly-ci/wingman-action@v1
+      if: failure()
