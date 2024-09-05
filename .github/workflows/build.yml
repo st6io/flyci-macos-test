@@ -3,17 +3,14 @@ name: CI
 on: 
   workflow_dispatch:
   
-permissions:
-  id-token: write
-  contents: read
+
 
 jobs:
   build:
     runs-on: macOS-13
-    strategy:
-      matrix:
-        xcode:
-          - "15.0"
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: lcpu
       run: lcpu
